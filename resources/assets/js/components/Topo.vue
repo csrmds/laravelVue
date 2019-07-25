@@ -12,7 +12,7 @@
 					</button>
 
 					<!-- Branding Image -->
-					<a class="navbar-brand" :href="url">
+					<a class="navbar-brand" v-bind:href="url">
 						{{ titulo }}
 					</a>
 				</div>
