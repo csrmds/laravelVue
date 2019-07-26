@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-	<pagina tamanho="x">		
+	<pagina tamanho="12">		
 
-		<painel titulo="Dashboard" >
+		<painel titulo="Lista de Artigos" >
+			<migalhas v-bind:lista="{{$listaMigalhas}}" ></migalhas>
+
 			<div class="row">
 				<div class="col-md-4">
 					<caixa qtd="199" cor="orange" titulo="Artigos!" icone="ion ion-pie-graph" url="{{route('artigos.index')}}"></caixa>

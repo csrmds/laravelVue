@@ -4,7 +4,11 @@
 
 <pagina tamanho="12">
 	<painel titulo="Lista de Artigos">
+		
+		<migalhas v-bind:lista="{{ $listaMigalhas }}"></migalhas>
 
+		<modallink tipo="button" nome="ModalDetalhes" titulo="Criar" css=""></modallink>
+		
 		<tabela-lista 
 			v-bind:titulos="['#','Título','Descrição']"
 			v-bind:itens="[
@@ -26,5 +30,11 @@
 
 	</painel>
 </pagina>
+
+<modal nome="ModalDetalhes">
+	<painel titulo="Adicionar">
+		<p>Modal teste</p>
+	</painel>
+</modal>
 
 @endsection
