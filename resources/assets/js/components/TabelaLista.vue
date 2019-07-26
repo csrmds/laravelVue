@@ -11,14 +11,14 @@
 		<table class="table table-striped table-horver">
 			<thead>
 				<tr>
-					<th v-for="titulo in titulos">{{titulo}}</th>
+					<th style="cursor:pointer" v-on:click="ordenaColuna(index)" v-for="(titulo, index) in titulos">{{titulo}}</th>
+					<th v-if="detalhe ||editar || deletar">Ação</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr v-for="(item, index) in lista">
 					<td v-for="i in item">{{i}}</td>
-					<td v-for="i in item">{{titulo}}</td>
-					<td v-for="i in item">{{descricao}}</td>
+					
 					<td v-if="detalhe || editar || deletar" >
 						
 						<form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post">
@@ -51,20 +51,52 @@
 
 <script>
 	export default {
-		props:['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
+		props:['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemcol'],
 		data: function() {
 			return {
-				buscar: ''
+				buscar: '',
+				ordemAux: this.ordem || "asc",
+				ordemAuxCol: this.ordemcol || 0
 			}
 		},
 		methods: {
 			executaForm: function(i) {
 				document.getElementById(i).submit();
+			},
+			ordenaColuna: function(coluna) {
+				this.ordemAuxCol= coluna;
+				if (this.ordemAux.toLowerCase()=="asc") {
+					this.ordemAux= "desc";
+				} else {
+					this.ordemAux= "asc";
+				}
 			}
 		},
 		computed: {
 			lista: function() {
 				//let busca= "php";
+
+				let ordem= this.ordemAux;
+				let ordemCol= this.ordemAuxCol;
+				ordem= ordem.toLowerCase();
+				ordemCol= parseInt(ordemCol);
+
+				if (ordem=="asc") {
+					this.itens.sort(function(a,b){
+						if (a[ordemCol]> b[ordemCol]) { return 1; };
+						if (a[ordemCol]< b[ordemCol]) { return -1; };
+						return 0;
+					});
+				} else {
+					this.itens.sort(function(a,b){
+						if (a[ordemCol]< b[ordemCol]) { return 1; };
+						if (a[ordemCol]> b[ordemCol]) { return -1; };
+						return 0;
+					});
+				};
+
+				
+
 				return this.itens.filter(res=> {
 
 					for (let k=0; k < res.length; k++) {

@@ -45638,15 +45638,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
+	props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemcol'],
 	data: function data() {
 		return {
-			buscar: ''
+			buscar: '',
+			ordemAux: this.ordem || "asc",
+			ordemAuxCol: this.ordemcol || 0
 		};
 	},
 	methods: {
 		executaForm: function executaForm(i) {
 			document.getElementById(i).submit();
+		},
+		ordenaColuna: function ordenaColuna(coluna) {
+			this.ordemAuxCol = coluna;
+			if (this.ordemAux.toLowerCase() == "asc") {
+				this.ordemAux = "desc";
+			} else {
+				this.ordemAux = "asc";
+			}
 		}
 	},
 	computed: {
@@ -45654,6 +45664,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			//let busca= "php";
+
+			var ordem = this.ordemAux;
+			var ordemCol = this.ordemAuxCol;
+			ordem = ordem.toLowerCase();
+			ordemCol = parseInt(ordemCol);
+
+			if (ordem == "asc") {
+				this.itens.sort(function (a, b) {
+					if (a[ordemCol] > b[ordemCol]) {
+						return 1;
+					};
+					if (a[ordemCol] < b[ordemCol]) {
+						return -1;
+					};
+					return 0;
+				});
+			} else {
+				this.itens.sort(function (a, b) {
+					if (a[ordemCol] < b[ordemCol]) {
+						return 1;
+					};
+					if (a[ordemCol] > b[ordemCol]) {
+						return -1;
+					};
+					return 0;
+				});
+			};
+
 			return this.itens.filter(function (res) {
 
 				for (var k = 0; k < res.length; k++) {
@@ -45712,10 +45750,27 @@ var render = function() {
       _c("thead", [
         _c(
           "tr",
-          _vm._l(_vm.titulos, function(titulo) {
-            return _c("th", [_vm._v(_vm._s(titulo))])
-          }),
-          0
+          [
+            _vm._l(_vm.titulos, function(titulo, index) {
+              return _c(
+                "th",
+                {
+                  staticStyle: { cursor: "pointer" },
+                  on: {
+                    click: function($event) {
+                      return _vm.ordenaColuna(index)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(titulo))]
+              )
+            }),
+            _vm._v(" "),
+            _vm.detalhe || _vm.editar || _vm.deletar
+              ? _c("th", [_vm._v("Ação")])
+              : _vm._e()
+          ],
+          2
         )
       ]),
       _vm._v(" "),
@@ -45727,14 +45782,6 @@ var render = function() {
             [
               _vm._l(item, function(i) {
                 return _c("td", [_vm._v(_vm._s(i))])
-              }),
-              _vm._v(" "),
-              _vm._l(item, function(i) {
-                return _c("td", [_vm._v(_vm._s(_vm.titulo))])
-              }),
-              _vm._v(" "),
-              _vm._l(item, function(i) {
-                return _c("td", [_vm._v(_vm._s(_vm.descricao))])
               }),
               _vm._v(" "),
               _vm.detalhe || _vm.editar || _vm.deletar
