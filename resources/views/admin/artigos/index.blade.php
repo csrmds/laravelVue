@@ -22,8 +22,7 @@
 			deletar="#deletar"
 			token="564987sad5f4sad74665sadf4"
 			ordem="asc" ordemcol="0"
-
-			>
+		>
 
 			
 		</tabela-lista>
