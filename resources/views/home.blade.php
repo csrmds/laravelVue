@@ -7,13 +7,13 @@
 				<painel titulo="Dashboard">
 					<div class="row">
 						<div class="col-md-4">
-							<painel titulo="sub painel 01" cor="panel-danger"></painel>
+							<caixa qtd="199" cor="orange" titulo="Artigos!" icone="ion ion-pie-graph" url="#"></caixa>
 						</div>
 						<div class="col-md-4">
-							<painel titulo="sub painel 02" cor="panel-blue"></painel>
+							<caixa qtd="3000" cor="magenta" titulo="Usuários" icone="ion ion-pie-graph" url="#"></caixa>
 						</div>
 						<div class="col-md-4">
-							<painel titulo="sub painel 02" cor="panel-info"></painel>
+							<caixa qtd="9" cor="purple" titulo="Autores" icone="ion ion-pie-graph" url="#"></caixa>
 						</div>
 					</div>
 				</painel>
