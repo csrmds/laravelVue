@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<div class="form-inline">
-			<a v-if="criar" v-bind:href="criar">Criar</a>
+			<a v-if="criar && !modal" v-bind:href="criar">Criar</a>
+			<modallink v-if="criar && modal" tipo="button" nome="adicionar" titulo="Criar" css=""></modallink>
 			<div class="form-group pull-right">
 				<input type="search" class="form-control input-sm" placeholder="Filtrar" v-model="buscar">
 			</div>
@@ -26,19 +27,23 @@
 							<input type="hidden" name="_token" v-bind:value="token">
 
 							<a v-if="detalhe" v-bind:href="detalhe">Detalhes |</a>
-							<a v-if="editar" v-bind:href="editar">Editar |</a>
+							<a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
+							<modallink v-if="editar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
+
 							<a href="#" v-on:click="executaForm(index)">Deletar</a>
 						</form>
 
 						<span v-if="!token">
 							<a v-if="detalhe" v-bind:href="detalhe">Detalhes |</a>
-							<a v-if="editar" v-bind:href="editar">Editar |</a>
+							<a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
+							<modallink v-if="editar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
 							<a v-if="deletar" v-bind:href="deletar">Deletar</a>
 						</span>
 
 						<span v-if="token && !deletar">
 							<a v-if="detalhe" v-bind:href="detalhe">Detalhes |</a>
-							<a v-if="editar" v-bind:href="editar">Editar</a>
+							<a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
+							<modallink v-if="editar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
 						</span>
 						
 					</td>
@@ -51,7 +56,7 @@
 
 <script>
 	export default {
-		props:['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemcol'],
+		props:['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemcol', 'modal'],
 		data: function() {
 			return {
 				buscar: '',
@@ -83,31 +88,32 @@
 
 				if (ordem=="asc") {
 					this.itens.sort(function(a,b){
-						if (a[ordemCol]> b[ordemCol]) { return 1; };
-						if (a[ordemCol]< b[ordemCol]) { return -1; };
+						if (Object.values(a)[ordemCol]> Object.values(b)[ordemCol]) { return 1; };
+						if (Object.values(a)[ordemCol]< Object.values(b)[ordemCol]) { return -1; };
 						return 0;
 					});
 				} else {
 					this.itens.sort(function(a,b){
-						if (a[ordemCol]< b[ordemCol]) { return 1; };
-						if (a[ordemCol]> b[ordemCol]) { return -1; };
+						if (Object.values(a)[ordemCol]< Object.values(b)[ordemCol]) { return 1; };
+						if (Object.values(a)[ordemCol]> Object.values(b)[ordemCol]) { return -1; };
 						return 0;
 					});
 				};
 
 				
-
-				return this.itens.filter(res=> {
-
-					for (let k=0; k < res.length; k++) {
-						if ((res[k]+"").toLowerCase().indexOf(this.buscar.toLowerCase())>=0) {
-							return true;
+				if (this.buscar) {
+					return this.itens.filter(res=> {
+						for (let k=0; k < res.length; k++) {
+							if ((res[k]+"").toLowerCase().indexOf(this.buscar.toLowerCase())>=0) {
+								return true;
+							}
 						}
-					}
-					return false;
+						return false;
+					});
+				}
 
-				});
-				//return this.itens;
+				
+				return this.itens;
 			}
 		}
 
