@@ -50,11 +50,11 @@
 			
 			<div class="form-group">
 				<label for="titulo">Título</label>
-				<input type="text" name="titulo" class="form-control input-sm" id="titulo">
+				<input type="text" class="form-control input-sm" name="titulo" v-model="$store.state.item.titulo" id="titulo">
 			</div>
 			<div class="form-group">
 				<label for="descricao">Descrição</label>
-				<input type="text" name="descricao" class="form-control input-sm" id="descricao">
+				<input type="text" class="form-control input-sm" name="descricao" v-model="$store.state.item.descricao"  id="descricao">
 			</div>
 
 			<button class="btn btn-default btn-sm">Atualizar</button>

@@ -28,7 +28,7 @@
 
 							<a v-if="detalhe" v-bind:href="detalhe">Detalhes |</a>
 							<a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-							<modallink v-if="editar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
+							<modallink v-if="editar && modal" v-bind:item="item" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
 
 							<a href="#" v-on:click="executaForm(index)">Deletar</a>
 						</form>
@@ -80,6 +80,7 @@
 		computed: {
 			lista: function() {
 				//let busca= "php";
+
 
 				let ordem= this.ordemAux;
 				let ordemCol= this.ordemAuxCol;
