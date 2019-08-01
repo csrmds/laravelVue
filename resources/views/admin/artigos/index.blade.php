@@ -25,42 +25,47 @@
 	</painel>
 </pagina>
 
-<modal nome="adicionar">
-	<painel titulo="Adicionar">
-		<formulario css="xa" action="#" method="put" enctype="" token="1231234413">
+<modal nome="adicionar" titulo="Adicionar" >
+	<formulario id="formAdicionar" css="xa" action="#" method="put" enctype="" token="1231234413">
 			
-			<div class="form-group">
-				<label for="titulo">Título</label>
-				<input type="text" name="titulo" class="form-control input-sm" id="titulo">
-			</div>
-			<div class="form-group">
-				<label for="descricao">Descrição</label>
-				<input type="text" name="descricao" class="form-control input-sm" id="descricao">
-			</div>
+		<div class="form-group">
+			<label for="titulo">Título</label>
+			<input type="text" name="titulo" class="form-control input-sm" id="titulo">
+		</div>
+		<div class="form-group">
+			<label for="descricao">Descrição</label>
+			<input type="text" name="descricao" class="form-control input-sm" id="descricao">
+		</div>
 
-			<button class="btn btn-default btn-sm">Adicionar</button>
+	</formulario>
+	<span slot="botoes" >
+		<button form="formAdicionar" class="btn btn-default btn-sm">Adicionar</button>
+	</span>
+	
 
-		</formulario>
-	</painel>
 </modal>
 
-<modal nome="editar">
-	<painel titulo="Editar">
-		<formulario css="xa" action="#" method="put" enctype="" token="1231234413">
+<modal nome="editar" titulo="Editar">
+	<formulario id="formEditar" css="xa" action="#" method="put" enctype="" token="1231234413">
 			
-			<div class="form-group">
-				<label for="titulo">Título</label>
-				<input type="text" class="form-control input-sm" name="titulo" v-model="$store.state.item.titulo" id="titulo">
-			</div>
-			<div class="form-group">
-				<label for="descricao">Descrição</label>
-				<input type="text" class="form-control input-sm" name="descricao" v-model="$store.state.item.descricao"  id="descricao">
-			</div>
+		<div class="form-group">
+			<label for="titulo">Título</label>
+			<input type="text" class="form-control input-sm" name="titulo" v-model="$store.state.item.titulo" id="titulo">
+		</div>
+		<div class="form-group">
+			<label for="descricao">Descrição</label>
+			<input type="text" class="form-control input-sm" name="descricao" v-model="$store.state.item.descricao"  id="descricao">
+		</div>
 
-			<button class="btn btn-default btn-sm">Atualizar</button>
+	</formulario>
 
-		</formulario>
-	</painel>
+	<span slot="botoes">
+		<button form="formEditar" class="btn btn-default btn-sm">Atualizar</button>
+	</span>
+</modal>
+
+<modal nome="detalhe" v-bind:titulo="$store.state.item.titulo">
+	<p>@{{ $store.state.item.descricao }}</p>
 </modal>
 
 @endsection
