@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Artigo;
 
 class ArtigosController extends Controller
 {
@@ -19,11 +20,15 @@ class ArtigosController extends Controller
 			["titulo"=>"Lista de Artigos","url"=>""]
 		]);
 
-		$listaArtigos= json_encode([
-			["id"=>1, "titulo"=>"PHP OO", "descricao"=>"Cruso PHP Orientado à Objetos"],
-			["id"=>2, "titulo"=>"jQuery", "descricao"=>"sobre a vida do jQuery"],
-			["id"=>3, "titulo"=>"Word", "descricao"=>"Cruso de Microsoft Word"]
-		]);
+		$listaArtigos= json_encode(
+			Artigo::all()
+			/*
+			[
+			["id"=>1, "titulo"=>"PHP OO", "descricao"=>"Cruso PHP Orientado à Objetos", "data"=>"2019-08-10"],
+			["id"=>2, "titulo"=>"jQuery", "descricao"=>"sobre a vida do jQuery", "data"=>"2019-07-10"],
+			["id"=>3, "titulo"=>"Word", "descricao"=>"Cruso de Microsoft Word", "data"=>"2019-08-23"]
+			]*/
+		);
 
 		return view('admin.artigos.index',compact('listaMigalhas', 'listaArtigos'));
 	}
@@ -46,7 +51,10 @@ class ArtigosController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		//dd($request->all());
+		$data= $request->all();
+		Artigo::create($data);
+		return redirect()->back();
 	}
 
 	/**
