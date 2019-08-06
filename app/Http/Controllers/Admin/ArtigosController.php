@@ -21,13 +21,7 @@ class ArtigosController extends Controller
 		]);
 
 		$listaArtigos= json_encode(
-			Artigo::all()
-			/*
-			[
-			["id"=>1, "titulo"=>"PHP OO", "descricao"=>"Cruso PHP Orientado à Objetos", "data"=>"2019-08-10"],
-			["id"=>2, "titulo"=>"jQuery", "descricao"=>"sobre a vida do jQuery", "data"=>"2019-07-10"],
-			["id"=>3, "titulo"=>"Word", "descricao"=>"Cruso de Microsoft Word", "data"=>"2019-08-23"]
-			]*/
+			Artigo::select('id','titulo','descricao','data')->get()
 		);
 
 		return view('admin.artigos.index',compact('listaMigalhas', 'listaArtigos'));
@@ -51,8 +45,19 @@ class ArtigosController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//dd($request->all());
 		$data= $request->all();
+
+		$validacao= \Validator::make($data,[
+			"titulo"=> "required",
+			"descricao"=> "required",
+			"conteudo"=> "required",
+			"data"=> "required"
+		]);
+
+		if($validacao->fails()){
+			return redirect()->back()->withErrors($validacao)->withInput();
+		}
+		
 		Artigo::create($data);
 		return redirect()->back();
 	}
@@ -65,7 +70,7 @@ class ArtigosController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		return Artigo::find($id);
 	}
 
 	/**
