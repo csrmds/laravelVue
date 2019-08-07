@@ -19,7 +19,7 @@
 		
 		<tabela-lista 
 			v-bind:titulos="['#','Título','Descrição', 'Data']"
-			v-bind:itens="{{ $listaArtigos }}"
+			v-bind:itens="{{ json_encode($listaArtigos) }}"
 			detalhe="/admin/artigos/"
 			criar="#criar"
 			editar="/admin/artigos/"
@@ -31,6 +31,11 @@
 
 			
 		</tabela-lista>
+
+		<div align="center">
+			<!--PAGINAÇÃO-->
+			{{ $listaArtigos->links() }}
+		</div>
 
 	</painel>
 </pagina>
