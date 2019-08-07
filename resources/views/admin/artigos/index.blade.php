@@ -22,9 +22,9 @@
 			v-bind:itens="{{ $listaArtigos }}"
 			detalhe="/admin/artigos/"
 			criar="#criar"
-			editar="#editar"
-			deletar="#deletar"
-			token="564987sad5f4sad74665sadf4"
+			editar="/admin/artigos/"
+			deletar="/admin/artigos/"
+			token="{{ csrf_token() }}"
 			ordem="asc" ordemcol="0"
 			modal="sim"
 		>
@@ -64,7 +64,7 @@
 </modal>
 
 <modal nome="editar" titulo="Editar">
-	<formulario id="formEditar" css="xa" action="#" method="put" enctype="" token="1231234413">
+	<formulario id="formEditar" css="" v-bind:action="'/admin/artigos/'+$store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
 			
 		<div class="form-group">
 			<label for="titulo">Título</label>
@@ -73,6 +73,14 @@
 		<div class="form-group">
 			<label for="descricao">Descrição</label>
 			<input type="text" class="form-control input-sm" name="descricao" v-model="$store.state.item.descricao"  id="descricao">
+		</div>
+		<div class="form-group">
+			<label for="conteudo">Conteúdo</label>
+			<textarea type="text" name="conteudo" id="conteudo" class="form-control input-sm" v-model="$store.state.item.conteudo"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="data">Data</label>
+			<input type="datetime-local" name="data" class="form-control" id="data" value="" v-model="$store.state.item.data">
 		</div>
 
 	</formulario>

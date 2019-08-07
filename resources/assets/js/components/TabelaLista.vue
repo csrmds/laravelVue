@@ -22,7 +22,7 @@
 					
 					<td v-if="detalhe || editar || deletar" >
 						
-						<form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post">
+						<form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar+item.id" method="post">
 							<input type="hidden" name="_method" value="DELETE">
 							<input type="hidden" name="_token" v-bind:value="token">
 
@@ -30,7 +30,7 @@
 							<modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css=""></modallink>
 
 							<a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-							<modallink v-if="editar && modal" v-bind:item="item" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
+							<modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
 
 							<a href="#" v-on:click="executaForm(index)">Deletar</a>
 						</form>
@@ -40,7 +40,7 @@
 							<modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css=""></modallink>
 
 							<a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-							<modallink v-if="editar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
+							<modallink v-if="editar && modal" tipo="link" v-bind:item="item" v-bind:url="editar" nome="editar" titulo="Editar |" css=""></modallink>
 							<a v-if="deletar" v-bind:href="deletar">Deletar</a>
 						</span>
 
@@ -49,7 +49,7 @@
 							<modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css=""></modallink>
 
 							<a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-							<modallink v-if="editar && modal" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
+							<modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" tipo="link" nome="editar" titulo="Editar |" css=""></modallink>
 						</span>
 						
 					</td>
