@@ -20,7 +20,13 @@ class ArtigosController extends Controller
 			["titulo"=>"Lista de Artigos","url"=>""]
 		]);
 
-		$listaArtigos= Artigo::select('id','titulo','descricao','data')->paginate(3);
+		$listaArtigos= Artigo::select('id','titulo','descricao','user_id','data')->paginate(3);
+
+		foreach ($listaArtigos as $key => $value) {
+			//$value->user_id= \App\User::find($value->user_id)->name;
+			$value->user_id= $value->user->name;
+			unset($value->user);
+		}
 
 		return view('admin.artigos.index',compact('listaMigalhas', 'listaArtigos'));
 	}
