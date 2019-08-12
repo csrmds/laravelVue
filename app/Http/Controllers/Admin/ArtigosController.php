@@ -28,13 +28,15 @@ class ArtigosController extends Controller
 			//$value->user_id= \App\User::find($value->user_id)->name;
 			$value->user_id= $value->user->name;
 			unset($value->user);
-		}*/
+		}
 
 		$listaArtigos= DB::table('artigos')
 			->join('users','users.id','=','artigos.user_id')
 			->select('artigos.id','artigos.titulo','artigos.descricao','users.name','artigos.data')
 			->whereNull('deleted_at')
-			->paginate(5);
+			->paginate(5);*/
+
+		$listaArtigos= Artigo::listaArtigos(5);
 
 		return view('admin.artigos.index',compact('listaMigalhas', 'listaArtigos'));
 	}
