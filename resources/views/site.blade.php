@@ -11,7 +11,7 @@
 						<artigocard
 							titulo="{{$value->titulo}}"
 							descricao="{{$value->descricao}}"
-							link="#"
+							link="{{route('artigo',[$value->id, str_slug($value->titulo)])}}"
 							imagem="https://static.imasters.com.br/wp-content/uploads/2019/02/06114156/GREY.jpg"
 							data="{{$value->data}}"
 							autor="{{$value->autor}}"
