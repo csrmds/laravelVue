@@ -1600,6 +1600,7 @@ Vue.component('migalhas', __webpack_require__(63));
 Vue.component('modal', __webpack_require__(66));
 Vue.component('modallink', __webpack_require__(69));
 Vue.component('formulario', __webpack_require__(72));
+Vue.component('artigocard', __webpack_require__(85));
 
 var app = new Vue({
   el: '#app',
@@ -47770,6 +47771,140 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(86)
+/* template */
+var __vue_template__ = __webpack_require__(87)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ArtigoCard.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-691d5716", Component.options)
+  } else {
+    hotAPI.reload("data-v-691d5716", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['titulo', 'descricao', 'link', 'imagem', 'data', 'autor', 'sm', 'md']
+});
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { class: "col-sm-" + (_vm.sm || "6") + " col-md-" + (_vm.md || "4") },
+    [
+      _c("div", { staticClass: "thumbnail" }, [
+        _c("img", {
+          attrs: {
+            src:
+              "https://static.imasters.com.br/wp-content/uploads/2019/02/06114156/GREY.jpg",
+            alt: "..."
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "caption" }, [
+          _c("small", [_vm._v(_vm._s(_vm.data) + " - " + _vm._s(_vm.autor))]),
+          _vm._v(" "),
+          _c("h3", [_vm._v(_vm._s(_vm.titulo))]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(_vm.url))]),
+          _vm._v(" "),
+          _c("p", [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: _vm.link, role: "button" }
+              },
+              [_vm._v("Leia mais")]
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-691d5716", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
