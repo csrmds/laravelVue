@@ -7,40 +7,26 @@
 			<painel titulo="Artigos">
 				<div class="row">
 					
-					<artigocard
-						titulo="PHP Artisan"
-						descricao="Decrição do Artigo"
-						link="#"
-						imagem="https://static.imasters.com.br/wp-content/uploads/2019/02/06114156/GREY.jpg"
-						data="15/03/2019"
-						autor="Cesar Melo"
-						sm="6"
-						md="4"
-					></artigocard>
-
-					<artigocard
-						titulo="PHP Artisan II"
-						descricao="Decrição do Artigo"
-						link="#"
-						imagem="https://static.imasters.com.br/wp-content/uploads/2019/02/06114156/GREY.jpg"
-						data="15/03/2019"
-						autor="Marcia Menezes"
-						sm="6"
-						md="4"
-					></artigocard>
-
-					<artigocard
-						titulo="PHP Artisan III"
-						descricao="Decrição do Artigo"
-						link="#"
-						imagem="https://static.imasters.com.br/wp-content/uploads/2019/02/06114156/GREY.jpg"
-						data="15/03/2019"
-						autor="João Neto"
-						sm="6"
-						md="4"
-					></artigocard>
+					@foreach ($lista as $key => $value)
+						<artigocard
+							titulo="{{$value->titulo}}"
+							descricao="{{$value->descricao}}"
+							link="#"
+							imagem="https://static.imasters.com.br/wp-content/uploads/2019/02/06114156/GREY.jpg"
+							data="{{$value->data}}"
+							autor="{{$value->autor}}"
+							sm="6"
+							md="4"
+						></artigocard>
+					@endforeach
+					
+						
+					
 
 				</div>	
+				<div align="center">
+					{{$lista}}
+				</div>
 			</painel>
 
 		</pagina>
