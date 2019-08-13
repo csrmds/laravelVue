@@ -17,6 +17,9 @@
 				<div class="col-md-4">
 					<caixa qtd="{{$totalAutores}}" cor="purple" titulo="Autores" icone="ion ion-pie-graph" url="{{route('autores.index')}}"></caixa>
 				</div>
+				<div class="col-md-4">
+					<caixa qtd="{{$totalAdmin}}" cor="green" titulo="Admin" icone="ion ion-pie-graph" url="{{route('adm.index')}}"></caixa>
+				</div>
 			</div>
 		</painel>
 
