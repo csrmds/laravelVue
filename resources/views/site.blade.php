@@ -5,6 +5,14 @@
 		<pagina tamanho="12">
 
 			<painel titulo="Artigos">
+
+				<p>
+					<form class="form-inline text-center" action="{{route('site')}}" method="get">
+						<input type="search" class="form-control input-sm" name="busca" value="{{isset($busca) ? $busca : ""}}">
+						<button class="btn btn-info btn-sm">Buscar</button>
+					</form>
+				</p>
+
 				<div class="row">
 					
 					@foreach ($lista as $key => $value)
